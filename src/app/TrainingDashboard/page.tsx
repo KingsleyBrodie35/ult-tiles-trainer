@@ -1,15 +1,10 @@
 import Link from "next/link";
-
-import { CreatePost } from "~/app/_components/create-post";
 import { getServerAuthSession } from "~/server/auth";
-import { api } from "~/trpc/server";
 
-export default async function Home() {
-  const hello = await api.post.hello.query({ text: "from tRPC" });
-  const session = await getServerAuthSession();
-
-  return (
-    <main className="bg-slate-600 w-screen h-screen flex flex-col">
+export default async function TrainingDashboard() { 
+    const session = await getServerAuthSession();
+    return (
+        <main className="bg-slate-600 w-screen h-screen flex flex-col">
       {// Nav
       }
       <div className="flex flex-row w-100	items-center p-2 justify-between py-5">
@@ -29,11 +24,24 @@ export default async function Home() {
         </Link>
         </div>
       </div>
-      <div className="flex-grow flex flex-col py-40 pl-8">
-        <h1 className="text-4xl py-4 text-slate-50">Welcome to the Ultimate Tiles ClearTile training modules</h1>
-        <p className="text-slate-400">Access documentation if you are looking to brush up on functions used at 
-Ultimate Tiles otherwise jump straight into training to get started!</p>
+      <div className="flex flex-row justify-center">
+        <Bar heading="Sales Orders"></Bar>
       </div>
     </main>
-  );
+    )
+}
+
+interface BarProps {
+    heading: string;
+}
+
+function Bar({heading}: BarProps) {
+    function handleClick() {
+        <Bar></Bar>
+    }
+    return (
+        <div className="w-5/6 border border-slate-500 shadow-lg p-6">
+            <p className="text-slate-50 text-xl">{heading}</p>
+        </div>
+    )
 }
