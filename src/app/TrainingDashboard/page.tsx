@@ -1,47 +1,42 @@
+"use client"
 import Link from "next/link";
-import { getServerAuthSession } from "~/server/auth";
+import { useState } from 'react';
+import { string } from "zod";
 
 export default async function TrainingDashboard() { 
-    const session = await getServerAuthSession();
-    return (
-        <main className="bg-slate-600 w-screen h-screen flex flex-col">
-      {// Nav
-      }
-      <div className="flex flex-row w-100	items-center p-2 justify-between py-5">
-        <div className="flex flex-row items-center flex-start">
-          <img className="w-40 pr-8 pl-4"src="/logo.png"></img>
-          <p className="text-xl font-medium text-slate-50">Training Module</p>
-        </div>
-        <div className="flex flex-row items-center justify-items-end text-slate-50">
-          <Link href="/TrainingDashboard" className="text-slate-50 pr-4">
-          Training
-          </Link>
-          <p className="pr-4">{session?.user.name}</p>
-          <Link
-            href={session ? "/api/auth/signout" : "/api/auth/signin"}
-            className="rounded-full bg-white/10 px-10 py-3 no-underline transition hover:bg-white/20 mr-8">
-            {session ? "Sign out" : "Sign in"}
-        </Link>
-        </div>
-      </div>
-      <div className="flex flex-row justify-center">
-        <Bar heading="Sales Orders"></Bar>
-      </div>
-    </main>
-    )
+  const barRows = []
+  
+  return (
+   <main className="bg-slate-600 w-screen h-screen flex flex-col align-items">
+     <div className="flex flex-col justify-center items-center">
+       <Bar heading="Sales Orders" subHeadings={["Order Details", "Delivery Details"]}></Bar>
+     </div>
+   </main>
+   )
 }
 
 interface BarProps {
     heading: string;
+    subHeadings: string[];
 }
 
-function Bar({heading}: BarProps) {
+function Bar({heading, subHeadings}: BarProps) {
+    const [showMore, setShowMore] = useState(false);
+
     function handleClick() {
-        <Bar></Bar>
+        //toggle showMore
+        setShowMore(!showMore)
     }
+    
     return (
-        <div className="w-5/6 border border-slate-500 shadow-lg p-6">
-            <p className="text-slate-50 text-xl">{heading}</p>
+      <>
+        <div className="w-5/6 border border-slate-500 shadow-lg p-6" onClick={handleClick}>
+              <p className="text-slate-50 text-xl">{heading}</p>
         </div>
+        <div className="w-4/6 border border-slate-500 shadow-lg p-6"
+        style={{ display: showMore ? 'block' : 'none' }}>
+          
+        </div>
+      </>  
     )
 }
