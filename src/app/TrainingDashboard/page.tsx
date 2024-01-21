@@ -11,7 +11,7 @@ export default function TrainingDashboard() {
       <Nav></Nav>
       <div className="flex flex-col justify-center items-center">
         <Bar heading="Debtor Enquiry" subHeadings={[]}></Bar>
-        <Bar heading="Sales Orders" subHeadings={["Order Details", "Delivery Details"]}></Bar>
+        <Bar heading="Sales Orders" subHeadings={["Order Details", "Delivery Details"]} ></Bar>
         <Bar heading="Delivery Details" subHeadings={["Address"]}></Bar>
       </div>
     </main>
@@ -29,7 +29,7 @@ function Bar(props: BarProps) {
     const { heading, subHeadings } = props;
 
     const rows: React.ReactNode[] = subHeadings.map((subHeading, idx) => (
-      <Link key={idx} href={`/${subHeading.replace(" ", "")}`}>
+      <Link key={idx} href={`/${subHeading.replace(" ", "")}`} className="w-full flex flex justify-center items-center">
       <div className={"w-5/6 border border-slate-500 bg-slate-700 p-6 cursor-pointer"}>
         <p className="text-slate-50 text-xl">{subHeading}</p>
       </div>
