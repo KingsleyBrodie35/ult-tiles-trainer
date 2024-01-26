@@ -1,32 +1,37 @@
+"use client"
 import Link from "next/link";
-import { getServerAuthSession } from "~/server/auth";
+import { useState } from 'react';
+import Nav from "../_components/nav"
 
 export default async function OrderDetails() { 
-    const session = await getServerAuthSession();
     return (
         <main className="bg-slate-600 w-screen h-screen flex flex-col align-items">
-        
-        <div className="flex flex-row w-100	items-center p-2 justify-between py-5">
-        <div className="flex flex-row items-center flex-start">
-          <img className="w-40 pr-8 pl-4"src="/logo.png"></img>
-          <p className="text-xl font-medium text-slate-50">Training Module</p>
-        </div>
-        <div className="flex flex-row items-center justify-items-end text-slate-50">
-          <Link href="/TrainingDashboard" className="text-slate-50 pr-4">
-          Training
-          </Link>
-          <p className="pr-4">{session?.user.name}</p>
-          <Link
-            href={session ? "/api/auth/signout" : "/api/auth/signin"}
-            className="rounded-full bg-white/10 px-10 py-3 no-underline transition hover:bg-white/20 mr-8">
-            {session ? "Sign out" : "Sign in"}
-        </Link>
-        </div>
-      </div>
-
+        <Nav></Nav> 
         <div className="flex flex-col justify-center items-center">
             <div>Hello</div>
         </div>
+
+        <div className="absolute bottom-0 right-0">
+          <CompleteButton></CompleteButton>
+          <button className="bg-slate-400	w-40 p-2 m-5 rounded-lg hover:bg-slate-300">Next Page</button>
+        </div>
+        
       </main>
     )
 }
+
+function CompleteButton() {
+  const [complete, setComplete] = useState(false);
+
+  //conditionally render bg colour
+  const bgColour = complete ? "bg-green-400" : "bg-slate-400";
+
+  function handleClick() {
+    setComplete(!complete)
+  }
+
+  return (
+    <button onClick={handleClick} className={`${bgColour} w-40 p-2 m-5 rounded-lg`}>Mark As Complete</button>
+  )
+}
+
