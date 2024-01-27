@@ -1,4 +1,5 @@
 import { sessionRouter } from "~/server/api/routers/post";
+import { trainingRouter } from "~/server/api/routers/trainingRouter";
 import { createTRPCRouter } from "~/server/api/trpc";
 
 /**
@@ -8,6 +9,7 @@ import { createTRPCRouter } from "~/server/api/trpc";
  */
 export const appRouter = createTRPCRouter({
   session: sessionRouter,
+  training: trainingRouter,
 });
 
 // export type definition of API
