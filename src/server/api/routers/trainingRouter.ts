@@ -31,6 +31,6 @@ export const trainingRouter = createTRPCRouter({
         })
         return user?.orderDetails
       }
-      return null
+      return false
     })
 })

@@ -1,4 +1,4 @@
-import { sessionRouter } from "~/server/api/routers/post";
+import { sessionRouter } from "~/server/api/routers/sessionRouter";
 import { trainingRouter } from "~/server/api/routers/trainingRouter";
 import { createTRPCRouter } from "~/server/api/trpc";
 

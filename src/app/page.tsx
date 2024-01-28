@@ -3,7 +3,6 @@ import { getServerAuthSession } from "~/server/auth";
 
 export default async function Home() {
   const session = await getServerAuthSession();
-
   return (
     <main className="bg-slate-600 w-screen h-screen flex flex-col">
       {// Nav
