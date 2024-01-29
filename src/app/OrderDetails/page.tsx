@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link";
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import Nav from "../_components/nav"
 import { comment } from "postcss";
 import { trpc } from "~/utils/trpc";
@@ -52,13 +52,11 @@ function NextPage(completeProps: CompleteProps) {
   const {complete} = completeProps
   //check if mark as complete has been clicked
   if (complete) {
-    console.log("hello")
-    const msg = trpc.training.updateOrderDetails.useQuery()
-    console.log(msg)
+    const msg = trpc.training.updateOrderDetails.useMutation()
   }
 
   return (
-    <button className="bg-slate-400	w-40 p-2 m-5 rounded-lg hover:bg-slate-300">Next Page</button>
+    <Link href={"/DeliveryDetails"}><button className="bg-slate-400	w-40 p-2 m-5 rounded-lg hover:bg-slate-300">Next Page</button></Link>
   )
 }
 

@@ -36,6 +36,20 @@ function Bar(props: BarProps) {
     const { heading, subHeadings } = props;
     let complete: boolean[] = []
 
+    subHeadings.map((subheading) => {
+      switch (subheading.heading) {
+        case "Order Details":
+          const val = trpc.training.getOrderDetails.useQuery()
+          if (val === undefined) {
+            complete.push(false)
+          } else {
+            complete.push(val.data)
+          }
+        break;
+        
+      }
+    })
+
     const rows: React.ReactNode[] = subHeadings.map((subHeading, idx) => (
       <Link key={idx} href={`/${subHeading?.link}`} className="w-full flex flex justify-center items-center">
       <div className={"flex items-center justify-between w-5/6 border p-6 cursor-pointer bg-slate-700"}>

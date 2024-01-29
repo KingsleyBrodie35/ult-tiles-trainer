@@ -5,7 +5,7 @@ import {
   } from "~/server/api/trpc";
 
 export const trainingRouter = createTRPCRouter({
-    updateOrderDetails: publicProcedure.query(async ({ ctx } ) => {
+    updateOrderDetails: publicProcedure.mutation(async ({ ctx } ) => {
       if (ctx.session?.user.email != null) {
         const updatedUser = await ctx.db.user.update({
           where: {
